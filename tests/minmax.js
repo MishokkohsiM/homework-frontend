@@ -30,6 +30,12 @@ QUnit.module('Тестируем функцию minmax', function () {
 	});
 
 	QUnit.test('minmax игнорирует обычный текст', function (assert) {
-		assert.deepEqual(minmax('1, -5.8 или 10, хотя 34 + -5.3 и 73'), [ -5.8, 73 ]);
+		assert.deepEqual(minmax('1, -5.3 или 10, хотя 34 + -5.8 и 73'), [ -5.8, 73 ]);
+	});
+
+	QUnit.test('minmax числа внутри слов', function (assert) {
+		assert.deepEqual(minmax('нваы2авы куц32 вы'), [ 2, 32 ]);
+		assert.deepEqual(minmax('нваы2авы куц1e2adsa в1e-3ы'), [ 1e-3, 1e2 ]);
+		assert.deepEqual(minmax('нваы2авы куцInfinity2 вы'), [ 2, Infinity ]);
 	});
 });
