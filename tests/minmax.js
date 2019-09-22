@@ -33,9 +33,8 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.deepEqual(minmax('1, -5.3 или 10, хотя 34 + -5.8 и 73'), [ -5.8, 73 ]);
 	});
 
-	QUnit.test('minmax числа внутри слов', function (assert) {
-		assert.deepEqual(minmax('нваы2авы куц32 вы'), [ 2, 32 ]);
-		assert.deepEqual(minmax('нваы2авы куц1e2adsa в1e-3ы'), [ 1e-3, 1e2 ]);
-		assert.deepEqual(minmax('нваы2авы куцInfinity2 вы'), [ 2, Infinity ]);
+	QUnit.test('minmax игнорирует специальные символы', function (assert) {
+		assert.deepEqual(minmax('1 + 2 = 3'), [ 1, 3 ]);
+		assert.deepEqual(minmax('0 ; , 11 :. 1e-1'), [ 0, 11 ]);
 	});
 });
