@@ -3,13 +3,13 @@
 
 const minmax = (array) => {
     if (!array){
-        return [undefined, undefined];
+        return [void 0, void 0];
     }
     const rmTrashRegex =/\s+?,?;?:?\s*/;
     const tagList = array.split(rmTrashRegex);
-    let arrayOfNumbers = tagList.filter((element) => !isNaN(element));
+    const arrayOfNumbers = tagList.filter((element) => !isNaN(element));
     if (!arrayOfNumbers.length) {
-        return [undefined, undefined];
+        return [void 0, void 0];
     }
     return [Math.min(... arrayOfNumbers), Math.max(... arrayOfNumbers)];
 };
